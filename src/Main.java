@@ -1,51 +1,116 @@
+import java.util.Scanner;
+
 public class Main
 {
-   static Impressora hp = new Impressora();
+    static GereImp gp = new GereImp();
+    static Scanner in = new Scanner(System.in);
     public static void main(String[] args)
     {
-        hp.add("coisa",1,5);
-        hp.add("dfgcoisa",2,15);
-        hp.add("asfdcoisa",3,20);
-        hp.add("coisa",4,10);
-        hp.add("dfgcoisa",5,17);
-        hp.add("asfdcoisa",6,20);
+        impOpc();
+        System.out.println("-------------------------");
+        System.out.print("Escolha uma impressora:");
+        int imp = in.nextInt();
+        System.out.println("-------------------------");
+        if(imp==0)
+            System.out.println("");
+        else {
+            impMenu(imp);
+            System.out.println("-------------------------");
+            System.out.print("Qual ação deseja fazer:");
+            int op = in.nextInt();
 
-        hp.add("coewsdfisa",1,2350);
-        hp.add("cdoisa",29,200);
-        hp.add("asfasdfoisa",1,20);
-        hp.add("drfgucoisa",19,2240);
-        hp.add("cgasjdfafdoisa",23,220);
-        hp.add("fdgcofisa",12,22350);
-        hp.add("dfgcasfoisa",3214,222);
-        hp.add("fdgcadfoisa",4,22);
-        hp.add("sdfgcsdgoisa",4,250);
-        hp.add("yjawdszxc",4,25);
-        hp.add("zxcercoisa",93,2040);
-        hp.add("xcvncoisa",1,240);
-        hp.add("123coisa",29,240);
-        hp.add("cb cvsadoisa",7,21);
-
-
-        hp.printAlll();
-        //hp.popMin();
-        System.out.println("_____________");
-        //hp.printAll();
-//        try {
-//            System.out.println(hp.pop(9, "dfghcoisa"));
-//        }catch (Exception e)
-//        {
-//            System.out.println("a heap não contem esse elemento");
-//        }
-        //System.out.println("_____________");
-        //hp.printAll()
-
-
-
-
-
-
-
+            while (op > 0 && imp != 0) {
+                switch (op) {
+                    case 1:
+                        System.out.print("titulo:");
+                        String title = in.next();
+                        System.out.print("id:");
+                        int id = in.nextInt();
+                        System.out.print("Paginas:");
+                        int numPag = in.nextInt();
+                        gp.adicionaJob(imp, title, id, numPag);
+                        break;
+                    case 2:
+                        gp.removeJob(imp);
+                        break;
+                    case 3:
+                        gp.removeJobsNumaImp(imp);
+                        break;
+                    case 4:
+                        impOpc();
+                        System.out.println("-------------------------");
+                        System.out.println("Escolha uma impressora:");
+                        imp = in.nextInt();
+                        op = 0;
+                        break;
+                    default:
+                        break;
+                }
+                System.out.println("deseja mesmo sair ?(\"sim\" para sair)");
+                String sair = in.next();
+                if (sair.equalsIgnoreCase("sim"))
+                    break;
+                else {
+                    impMenu(imp);
+                    System.out.println("Qual ação deseja fazer");
+                    op = in.nextInt();
+                }
+            }
+        }
     }
-
-
+    public static void impMenu(int imp)
+{
+    if(imp==0 || imp>5)
+        return;
+    else
+    {
+        switch(imp)
+        {
+            case 1:
+               System.out.println("Impressora dos Alunos:");
+               System.out.println("1-adiciona job");
+               System.out.println("2-imprimir job com menos paginas");
+               System.out.println("3-imprimir todos os jobs");
+               System.out.println("4-Sair da impressora");
+                break;
+            case 2:
+                System.out.println("Impressora dos docentes:");
+                System.out.println("1-adiciona job");
+                System.out.println("2-imprimir job com menos paginas");
+                System.out.println("3-imprimir todos os jobs");
+                System.out.println("4-Sair da impressora");
+                break;
+            case 3:
+                System.out.println("Impressora dos Funcionários dos serviços:");
+                System.out.println("1-adiciona job");
+                System.out.println("2-imprimir job com menos paginas");
+                System.out.println("3-imprimir todos os jobs");
+                System.out.println("4-Sair da impressora");
+                break;
+            case 4:
+                System.out.println("Impressora dos Continuos:");
+                System.out.println("1-adiciona job");
+                System.out.println("2-imprimir job com menos paginas");
+                System.out.println("3-imprimir todos os jobs");
+                System.out.println("4-Sair da impressora");
+                break;
+            case 5:
+                System.out.println("Impressora dos Reitores:");
+                System.out.println("1-adiciona job");
+                System.out.println("2-imprimir job com menos paginas");
+                System.out.println("3-imprimir todos os jobs");
+                System.out.println("4-Sair da impressora");
+                break;
+        }
+    }
+}
+public static void impOpc()
+{
+    System.out.println("1-Impressora dos alunos");
+    System.out.println("2-Impressora dos docentes");
+    System.out.println("3-Impressora dos Funcionários dos serviços");
+    System.out.println("4-Impressora dos continuos");
+    System.out.println("5-Impressora dos Reitores");
+    System.out.println("0-para sair");
+}
 }

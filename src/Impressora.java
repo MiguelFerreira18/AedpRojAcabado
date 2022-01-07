@@ -2,11 +2,12 @@ import java.util.ArrayList;
 
 public class Impressora
 {
-
+    private String name;
     private ArrayList<Job> heap;
     private int tamanho;
-    public Impressora()
+    public Impressora(String name)
     {
+        this.name = name;
         this.heap = new ArrayList<Job>();//array list de jobs
         this.heap.add(null);//valor inicial que será alterado
         this.tamanho = 0;//tamanho inicial
@@ -47,34 +48,34 @@ public Job popMin()
    return min;
 }
 
-    /**
-     * Este metodo elemina um job á escolha
-     * @param id    id do autor
-     * @param titulo    titulo do job
-     * @return  deolve o job eleminado
-     */
-    public Job pop(int id, String titulo)
-{
-    if (tamanho==0)
-    {
-        throw new Error("heap vazia");
-    }
-    for(Job d : heap)
-    {
-        if(d==null)
-            continue;
-        if (d.getIdAuthor()==id && d.getTitulo().compareToIgnoreCase(titulo)==0)
-        {
-            System.out.println("aqui");
-            Job removed = d;
-            heap.remove(d);
-            tamanho--;
-            heapify();
-            return removed;
-        }
-    }
-    throw new Error("não tem esse titulo nem esse id");//ver depois
-}
+//    /**
+//     * Este metodo elemina um job á escolha
+//     * @param id    id do autor
+//     * @param titulo    titulo do job
+//     * @return  deolve o job eleminado
+//     */
+//    public Job pop(int id, String titulo)
+//{
+//    if (tamanho==0)
+//    {
+//        throw new Error("heap vazia");
+//    }
+//    for(Job d : heap)
+//    {
+//        if(d==null)
+//            continue;
+//        if (d.getIdAuthor()==id && d.getTitulo().compareToIgnoreCase(titulo)==0)
+//        {
+//            System.out.println("aqui");
+//            Job removed = d;
+//            heap.remove(d);
+//            tamanho--;
+//            heapify();
+//            return removed;
+//        }
+//    }
+//    throw new Error("não tem esse titulo nem esse id");//ver depois
+//}
 
     /**
      * metodo para trocar os elementos para que estajam por ordem crescente de nº de paginas  (troca um dos elementos filhos pelo parent se o parent for maior)
@@ -118,7 +119,6 @@ public Job popMin()
         rightChild = getRight(current);
     }
 }
-
     /**
      * metodo que será usado para trocar os elementos no array
      * @param a posição do elemento corrente
@@ -130,7 +130,6 @@ public Job popMin()
     heap.set(b, heap.get(a));
     heap.set(a, temp);
 }
-
     /**
      * verifica se o index numa posição do array existe vendo se é menor ou igual que o tamanho
      * @param index posição que se quer saber se existe
@@ -154,7 +153,7 @@ public Job popMin()
 }
 
     /**
-     * metodo para imprimir todos os jobs
+     * metodo para imprimir todos os jobs por ordem
      */
     public void printAll()
 {
@@ -168,19 +167,6 @@ public Job popMin()
         System.out.println("não há jobs na impressora");
         return;
     }
-    while(tamanho!=0)
-    {
-        if(heap.get(tamanho)!=null)
-        {
-            System.out.println(heap.get(tamanho).getIdAuthor() +" imprimiu - " + heap.get(tamanho).getPageNumber()+" paginas com o titulo - " + heap.get(tamanho).getTitulo());
-            heap.remove(tamanho);
-            heapify();
-        }
-        tamanho--;
-    }
-}
-public void printAlll()
-{
    while(tamanho>=1)
    {
        System.out.println(popMin().getPageNumber());
