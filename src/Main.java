@@ -55,9 +55,9 @@ public class Main
                     System.out.println("Qual ação deseja fazer");
                     op = in.nextInt();
                 }
-            }
-        }
-    }
+            }//fim do while
+        }//fim do else
+    }//fim do metodo
     public static void impMenu(int imp)
 {
     if(imp==0 || imp>5)
@@ -101,9 +101,9 @@ public class Main
                 System.out.println("3-imprimir todos os jobs");
                 System.out.println("4-Sair da impressora");
                 break;
-        }
-    }
-}
+        }//fim do switch
+    }//fim do else
+}//fim do metodo
 public static void impOpc()
 {
     System.out.println("1-Impressora dos alunos");
@@ -112,5 +112,5 @@ public static void impOpc()
     System.out.println("4-Impressora dos continuos");
     System.out.println("5-Impressora dos Reitores");
     System.out.println("0-para sair");
-}
+}//fim do metodo
 }
