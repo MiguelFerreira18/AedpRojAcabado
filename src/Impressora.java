@@ -15,7 +15,7 @@ public class Impressora
     {
         this.name = name;
         this.heap = new ArrayList<Job>();//array list de jobs
-        this.heap.add(null);//valor inicial que será alterado
+        this.heap.add(null);//este valor serve essencialmente para ajudar quando se está a ver os valores em vez de começar em 0 começa em 1
         this.tamanho = 0;//tamanho inicial
     }
 
@@ -27,7 +27,7 @@ public class Impressora
     public Impressora(String name,int sizeArray)
     {
         this.heap = new ArrayList<Job>(sizeArray);//array list de jobs
-        this.heap.add(null);//valor inicial que será alterado
+        this.heap.add(null);//este valor serve essencialmente para ajudar quando se está a ver os valores em vez de começar em 0 começa em 1
         this.tamanho = 0;//tamanho inicial
     }
 
@@ -163,22 +163,15 @@ public Job popMin()
 {
     return (existe(leftChild) && (heap.get(current).getPageNumber()>heap.get(leftChild).getPageNumber()) || (existe(rightChild) && (heap.get(current).getPageNumber()>heap.get(rightChild).getPageNumber())));
 }//fim do metodo
-
     /**
      * metodo para imprimir todos os jobs por ordem
      */
     public void printAll()
 {
-    try {
         if (heap.get(1)==null)
         {
             System.out.println("não há jobs na impressora");
         }
-    }catch(Exception e)
-    {
-        System.out.println("não há jobs na impressora");
-        return;
-    }
    while(tamanho>=1)
    {
        System.out.println(popMin().getPageNumber());
