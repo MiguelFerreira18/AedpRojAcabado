@@ -133,14 +133,14 @@ public Job popMin()
 }//fim do metodo
     /**
      * metodo que será usado para trocar os elementos no array
-     * @param a posição do elemento corrente
-     * @param b posição do filho esquerdo ou filho direito
+     * @param inicial posição do elemento corrente
+     * @param ultimo posição do filho esquerdo ou filho direito
      */
-    private void troca(int a, int b)
+    private void troca(int inicial, int ultimo)
 {
-    Job temp = heap.get(b);
-    heap.set(b, heap.get(a));
-    heap.set(a, temp);
+    Job temp = heap.get(ultimo);
+    heap.set(ultimo, heap.get(inicial));
+    heap.set(inicial, temp);
 }//fim do metodo
     /**
      * verifica se o index numa posição do array existe vendo se é menor ou igual que o tamanho
