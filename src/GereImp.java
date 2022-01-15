@@ -1,6 +1,5 @@
 
-public class GereImp
-{
+public class GereImp {
     //variaveis
 Impressora[] listImp;
 

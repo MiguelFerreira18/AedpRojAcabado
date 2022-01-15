@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-public class Main
-{
+public class Main {
     static GereImp gp = new GereImp();
     static Scanner in = new Scanner(System.in);
     public static void main(String[] args)
@@ -60,7 +59,7 @@ public class Main
                     System.out.println("Qual ação deseja fazer");
                     op = in.nextInt();
             }
-        }
+        }//fim do metodo main
 
     public static void impMenu(int imp)
 {
@@ -120,4 +119,5 @@ public static void impOpc()
     System.out.println("4-Impressora dos continuos");
     System.out.println("5-Impressora dos Reitores");
 }//fim do metodo
-}
+
+}//fim da class main

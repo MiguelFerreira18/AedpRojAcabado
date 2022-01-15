@@ -1,12 +1,10 @@
 import java.util.ArrayList;
 
-public class Impressora
-{
+public class Impressora {
     //variaveis
     private String name;
     private ArrayList<Job> heap;
     private int tamanho;
-
     /**
      * Construtor sem espaço
      * @param name nome da impressora
@@ -18,7 +16,6 @@ public class Impressora
         this.heap.add(null);//este valor serve essencialmente para ajudar quando se está a ver os valores em vez de começar em 0 começa em 1
         this.tamanho = 0;//tamanho inicial
     }
-
     /**
      * construtor com espaço limitado
      * @param name nome da impressora
@@ -42,7 +39,7 @@ public class Impressora
         heap.add(new Job(titulo,idAuthor,pageNumber));
         tamanho++;
         sobeEmBolha(); //comparação para trocar valores maior para menor
-    }
+    }//fim do metodo
 /**
 * Este metodo elemina o valor mais pequeno(primeiro valor da heap)
 * @return retorna o valor eleminado
@@ -58,38 +55,9 @@ public Job popMin()
    tamanho--;
    heapify();
    return min;
-}
-
-//    /**
-//     * Este metodo elemina um job á escolha
-//     * @param id    id do autor
-//     * @param titulo    titulo do job
-//     * @return  deolve o job eleminado
-//     */
-//    public Job pop(int id, String titulo)
-//{
-//    if (tamanho==0)
-//    {
-//        throw new Error("heap vazia");
-//    }
-//    for(Job d : heap)
-//    {
-//        if(d==null)
-//            continue;
-//        if (d.getIdAuthor()==id && d.getTitulo().compareToIgnoreCase(titulo)==0)
-//        {
-//            System.out.println("aqui");
-//            Job removed = d;
-//            heap.remove(d);
-//            tamanho--;
-//            heapify();
-//            return removed;
-//        }
-//    }
-//    throw new Error("não tem esse titulo nem esse id");//ver depois
-//}
+}//fim do metodo
     /**
-     * metodo para trocar os elementos para que estajam por ordem crescente de nº de paginas  (troca um dos elementos filhos pelo parent se o parent for maior)
+     * metodo para trocar o elemento que foi recentemente adicionado em que compara com o elemetno pai se for menor irá trocar sucessivamente até deixar de o ser
      */
     private void sobeEmBolha()
 {
@@ -100,7 +68,6 @@ public Job popMin()
         current = getParent(current);
     }
 }//fim do metodo
-
     /**
      * metodo para fazer trocar os elementos
      */
@@ -129,7 +96,7 @@ public Job popMin()
         }
         leftChild = getLeft(current);
         rightChild = getRight(current);
-    }
+    }//fim do while
 }//fim do metodo
     /**
      * metodo que será usado para trocar os elementos no array
@@ -151,7 +118,6 @@ public Job popMin()
 {
     return index <= tamanho;
 }
-
     /**
      * metodo que verifica se os elementos podem ser trocados
      * @param current   posição do pai
@@ -168,16 +134,15 @@ public Job popMin()
      */
     public void printAll()
 {
-        if (heap.get(1)==null)
-        {
-            System.out.println("não há jobs na impressora");
-        }
+    if (heap.get(1)==null)
+    {
+        System.out.println("não há jobs na impressora");
+    }
    while(tamanho>=1)
    {
        System.out.println(popMin().getPageNumber());
-   }
+   }//fim do while
 }//fim do metodo
-
     /**
      * este metodo arranja o pai de um job
      * @param current posição corrente
@@ -187,7 +152,6 @@ public Job popMin()
 {
     return (int) Math.floor(current / 2);
 }
-
     /**
      * este metodo arranja o filho esquerdo de um job
      * @param current posição corrente
@@ -207,4 +171,4 @@ public Job popMin()
 {
     return (current * 2) + 1;
 }
-}
+}//fim da class
