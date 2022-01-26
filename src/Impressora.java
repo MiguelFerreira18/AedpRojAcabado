@@ -34,11 +34,21 @@ public class Impressora {
      * @param idAuthor  id do autor
      * @param pageNumber  numero de paginas do job
      */
-    public void add(String titulo, int idAuthor, int pageNumber)
+    public String add(String titulo, int idAuthor, int pageNumber)
     {
+        for (Job j:heap)
+        {
+            if (j == null) {
+                continue;
+            } else if(j.getTitulo().compareToIgnoreCase(titulo)==0 && j.getIdAuthor() == idAuthor ) {
+                return "não se pode por Jobs repetidos";
+            }
+        }
+
         heap.add(new Job(titulo,idAuthor,pageNumber));
         tamanho++;
         sobeEmBolha(); //comparação para trocar valores maior para menor
+        return "Job adicionado";
     }//fim do metodo
 /**
 * Este metodo elemina o valor mais pequeno(primeiro valor da heap)
@@ -46,15 +56,19 @@ public class Impressora {
 */
 public Job popMin()
 {
-   if (tamanho == 0)
-   {
-       throw new Error("Heap está vazia");
-   }
-   troca(1, tamanho);
-   Job min = heap.remove(tamanho);
-   tamanho--;
-   heapify();
-   return min;
+    try {
+        if (tamanho == 0) {
+            throw new Error("Heap está vazia");
+        }
+        troca(1, tamanho);
+        Job min = heap.remove(tamanho);
+        tamanho--;
+        heapify();
+        return min;
+    }catch (Error e){
+        System.out.println("Como a impressora dos Continuos está vazia vai enviar um erro");
+        return null;
+    }
 }//fim do metodo
     /**
      * metodo para trocar o elemento que foi recentemente adicionado em que compara com o elemetno pai se for menor irá trocar sucessivamente até deixar de o ser
@@ -140,7 +154,7 @@ public Job popMin()
     }
    while(tamanho>=1)
    {
-       System.out.println(popMin().getPageNumber());
+       System.out.println(popMin());
    }//fim do while
 }//fim do metodo
     /**
@@ -161,7 +175,6 @@ public Job popMin()
 {
     return current * 2;
 }
-
     /**
      * este metodo arranja o filho direito de um job
      * @param current posição corrente

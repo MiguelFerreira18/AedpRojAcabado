@@ -26,8 +26,8 @@ Impressora[] listImp;
      */
     public void adicionaJob(int imp,String titulo,int id,int numPags)
     {
-        listImp[imp].add(titulo,id,numPags);
-        System.out.println("Job adicionado");
+        String temp = listImp[imp].add(titulo,id,numPags);
+        System.out.println(temp);
     }//fim do metodo
 
     /**
@@ -37,7 +37,13 @@ Impressora[] listImp;
     public void removeJob(int imp)
     {
         Job delJob = listImp[imp].popMin();
-        System.out.println(delJob);
+        if (delJob == null)
+        {
+            System.out.println("Não existe nenhum job nessa impressora");
+        }else
+        {
+            System.out.println(delJob);
+        }
     }//fim do metodo
 
     /**

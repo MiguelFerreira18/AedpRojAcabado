@@ -32,6 +32,6 @@ public class Job
     }
     @Override
     public String toString() {
-        return  "titulo - "+titulo+", pageNumber=" + pageNumber + '}';
+        return  "titulo - "+titulo+", pageNumber=" + pageNumber;
     }
 }//fim da classe
